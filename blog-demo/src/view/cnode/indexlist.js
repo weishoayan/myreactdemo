@@ -19,7 +19,7 @@ export default class IndexList extends Component {
     getData(tab,page){
         axios.get(`https://cnodejs.org/api/v1/topics?tab=${tab}&page=${page}&limit=20`)
             .then(res=>{
-                console.log(res)
+                // console.log(res)
                 this.setState({
                     data:res.data.data,
                     loading:false

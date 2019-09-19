@@ -7,7 +7,7 @@ import IndexMenu from './indexMenu';
 
 export default class Index extends Component {
     render() {
-        console.log(this)
+        // console.log(this)
         const tab = this.props.match.params.id
         return (
             <Row className='wrap'>

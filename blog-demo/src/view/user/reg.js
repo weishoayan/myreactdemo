@@ -39,7 +39,7 @@ class RegistrationForm extends Component {
   postData = (data) =>{
     postData('/user/reg',data)
       .then(res=>{
-        console.log(res,this)
+        console.log(res)
         if (res.code === 0) {
           // 注册成功
           this.success(res.message)
@@ -61,7 +61,7 @@ class RegistrationForm extends Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
         this.setState({userInfo:values})
         // console.log(this)
         // 发送用户注册数据
