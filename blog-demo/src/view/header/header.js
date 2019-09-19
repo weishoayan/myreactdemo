@@ -12,8 +12,8 @@ class MainHeader extends Component{
             // loading:false
         }
     }
+
     render(){
-        //console.log(this,'redux')
         return (
             <div>
                 <Row className={'wrap'}>
@@ -23,7 +23,7 @@ class MainHeader extends Component{
                         <Divider type='vertical' className='headerDivider'/>
                         {/* 我是头部组件 */}
                         <Menu mode='horizontal' className='top-Menu'>
-                            <Menu.Item><Link to="/index/all"><Icon type='home'/>首页</Link></Menu.Item>
+                            <Menu.Item><Link to="/index/all"><Icon type='home' />首页</Link></Menu.Item>
                             <Menu.Item><Link to="/getstart"><Icon type='book'/>新手入门</Link></Menu.Item>
                             <Menu.Item><Link to="/cnode/all"><Icon type='info-circle-o'/>Cnode</Link></Menu.Item>
                         </Menu>

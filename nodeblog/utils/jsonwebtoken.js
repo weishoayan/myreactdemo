@@ -4,7 +4,7 @@ exports.tokenSign = function (data){
     let token = jwt.sign({
         user: data
     }, 'haha', {
-        expiresIn: 180
+        expiresIn: 600
     })
     //返回token
     return token

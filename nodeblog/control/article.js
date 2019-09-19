@@ -135,6 +135,7 @@ exports.getarticle = async ctx =>{
     ctx.body = {
        article,
        comment,
+       commentlen:comment.length,
        code:0
     }
     // await ctx.render("article",{

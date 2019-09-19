@@ -13,15 +13,16 @@ export default class Article extends Component {
         this.state = {
             id:this.props.match.params.id,
             article:{},
-            comment:[]
+            comment:[],
+            commentlen:0
         }
         this.getdata(this.state.id)
     }
     getdata = (id) =>{
         getData('/article/'+id)
         .then(res=>{
-            //console.log(res)
-            this.setState({article:res.article,comment:res.comment}) 
+            console.log(res)
+            this.setState({article:res.article,comment:res.comment,commentlen:res.commentlen}) 
         })
         .catch(err=>{
             console.log(err)
@@ -29,7 +30,7 @@ export default class Article extends Component {
     }
     render() {
         // console.log('article',this.props)
-        const { article , comment} = this.state
+        const { article , comment , commentlen} = this.state
         
         return (
             <div className='wrap'>
@@ -59,7 +60,8 @@ export default class Article extends Component {
                     
                 </Card>
                 <Card size="small" title="评论" >
-                    <List  data={comment} />
+                    {/* <List  data={comment} maxNum={commentlen}/> */}
+                    <List  isCommit={true}/>
                 </Card>
                 {/* <Card size="small" title="评论" > */}
                 <div className='clearfix' style={{'width':'600px'}}>
