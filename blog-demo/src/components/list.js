@@ -43,18 +43,27 @@ export default class Lists extends Component {
 
     componentDidMount(){
         // console.log(':::::',this.props)
-        if (this.props.isCommit) {
-            
+        if (this.props.isComment) {
+            // console.log(this.props)
         } else {
             this.props.tabs === 'all' ? this.getdataAll(1) : this.getDataTips(this.props.tabs,1)
         }
     }
+
+    componentWillReceiveProps(nextProps){
+        if (nextProps.isComment) {
+            this.setState({commentData:nextProps.commentData,total:nextProps.maxNum,loading:false})
+        }
+    }
+
     shouldComponentUpdate(nextProps,nextState){
         // console.log('componentwillupdata',nextProps,nextState,this.props)
         if (nextProps.tabs !== nextState.tabs) {
             this.setState({tabs:nextProps.tabs,current:1})
             nextProps.tabs  === 'all' ? this.getdataAll(1) : this.getDataTips(nextProps.tabs,1)
         }
+        
+        
         return true
     }
 
@@ -64,7 +73,7 @@ export default class Lists extends Component {
 
     render() {
         // console.log(this)
-        const { current , tabs , total , articleData , loading } = this.state
+        const { current , total , articleData , loading ,commentData } = this.state
         const position = {
             current,
             defaultCurrent:1,
@@ -83,7 +92,7 @@ export default class Lists extends Component {
                         className="main-list"
                         itemLayout="horizontal"
                         loading={loading}
-                        dataSource={articleData}
+                        dataSource={articleData.length > 0 ? articleData : commentData}
                         pagination={position}
                         renderItem={item => (
                             <List.Item>

@@ -16,12 +16,17 @@ export default class Article extends Component {
             comment:[],
             commentlen:0
         }
+        
+    }
+
+    componentWillMount(){
         this.getdata(this.state.id)
     }
+
     getdata = (id) =>{
         getData('/article/'+id)
         .then(res=>{
-            console.log(res)
+            // console.log(res)
             this.setState({article:res.article,comment:res.comment,commentlen:res.commentlen}) 
         })
         .catch(err=>{
@@ -60,8 +65,7 @@ export default class Article extends Component {
                     
                 </Card>
                 <Card size="small" title="评论" >
-                    {/* <List  data={comment} maxNum={commentlen}/> */}
-                    <List  isCommit={true}/>
+                    <List isComment={true} commentData={comment} maxNum={commentlen}/>
                 </Card>
                 {/* <Card size="small" title="评论" > */}
                 <div className='clearfix' style={{'width':'600px'}}>
