@@ -8,7 +8,7 @@ const { join } = require("path");
 
 
 //进入后台
-exports.index = async ctx =>{
+/* exports.index = async ctx =>{
     if(ctx.session.isNew){
         return await ctx.render("404",{
             title: "404"
@@ -33,16 +33,16 @@ exports.index = async ctx =>{
             title: "404"
         })
     }
-}
+} */
 
 
 // 返回所有用户的名称、文章数量、权限、评论数量
 exports.users = async ctx =>{
-    if(ctx.session.isNew){
+    /* if(ctx.session.isNew){
         return await ctx.render("404",{
             title: "404"
         })
-    }
+    } */
     let data = await User.find()
     // console.log(data)
     // data.forEach(v =>{
@@ -50,6 +50,7 @@ exports.users = async ctx =>{
 
     //     console.log(v,v.articleCount,v.commentCount)
     // })
+    console.log(data)
     data.forEach(v =>{
         // v.commentCount = v.commentNum
         // v.articleCount = v.articleNum

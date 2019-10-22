@@ -44,7 +44,7 @@ export default class headerUser extends Component {
                                 </div>
                             }>
                                 <Menu.ItemGroup >
-                                    {/* <Menu.Item key="setting:1"><Link to={"/user/"+userInfo.user}>用户中心</Link></Menu.Item> */}
+                                    <Menu.Item key="setting:1"><Link to={"/user/articles/"+userInfo.user}>用户中心</Link></Menu.Item>
                                     <Menu.Item key="setting:2" onClick={this.logout}><span  >退出</span></Menu.Item>
                                 </Menu.ItemGroup>
                             </Menu.SubMenu>

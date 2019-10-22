@@ -149,14 +149,15 @@ exports.getarticle = async ctx =>{
 
 //在后台获取所有文章
 exports.artlists = async ctx =>{
-    // console.log(ctx.session.role)
-    const id = ctx.session.id;
+    console.log(ctx.request.body)
+    const {id,role} = ctx.request.body
     let data;
-    if (ctx.session.role > 1) {
+    if (role > 1) {
         data = await Article.find()
     }else{
         data = await Article.find({author:id});
     }
+    // console.log(data)
     ctx.body = {
         code: 0,
         data,
@@ -169,14 +170,15 @@ exports.artlists = async ctx =>{
 exports.delete = async ctx =>{
     const id = ctx.params.id;
     let res = {
-        state: 1,
+        code: 0,
         message: "删除成功"
     }
     await Article.findById(id)
     .then(data => data.remove())
     .catch(err=>{
+        console.log(err)
         res = {
-            state: 0,
+            code: 1,
             message: err
         }
     })

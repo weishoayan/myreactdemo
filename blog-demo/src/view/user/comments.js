@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import {   postData , delData } from '../../api/api'
 import { Table , Button , message , Col , Menu } from 'antd';
 import { connect } from 'react-redux'
-class User extends Component {
+class Notfound extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -11,18 +11,17 @@ class User extends Component {
         }
     }
     componentDidMount(){
-        this.getArticles()
+        this.getComments()
     }
 
-    getArticles(){
+    getComments(){
         let data = {
             user:localStorage.user,
             token:localStorage.token,
             id:localStorage.id,
             role:localStorage.role
         }
-        postData('/user/articles',data).then(res=>{
-            // console.log(res)
+        postData('/user/comments',data).then(res=>{
             if (res.code === 1) {
                 this.error(res.message).then(()=>{
                     this.logout()
@@ -38,12 +37,12 @@ class User extends Component {
     }
 
     handleClick = (data) => {
-        // console.log(data)
-        delData(`/article/${data._id}`).then(async res=>{
+        console.log(data)
+        delData(`/comment/${data._id}`).then(async res=>{
             console.log(res)
             if (res.code === 0) {
                 await this.success(res.message)
-                this.getArticles()
+                this.getComments()
             }
         })
     }
@@ -63,16 +62,16 @@ class User extends Component {
     }
 
     render() {
-        // console.log(this)
+        console.log(this)
         const {data} = this.state
-        // console.log(data)
+        console.log(data)
         const columns = [
             {
-                title: '标题',
-                dataIndex: 'title',
+                title: '文章',
+                dataIndex: 'article.title',
             },
             {
-                title: '内容',
+                title: '评论内容',
                 dataIndex: 'content',
                 align:'center',
                 ellipsis:true,
@@ -109,6 +108,6 @@ class User extends Component {
     }
 }
 // 不需要redux状态，只要方法
-User = connect((state)=>{return {}})(User)
+Notfound = connect((state)=>{return {}})(Notfound)
 
-export default User
+export default Notfound

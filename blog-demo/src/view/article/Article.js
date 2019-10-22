@@ -26,7 +26,7 @@ export default class Article extends Component {
     getdata = (id) =>{
         getData('/article/'+id)
         .then(res=>{
-            // console.log(res)
+            console.log(res)
             this.setState({article:res.article,comment:res.comment,commentlen:res.commentlen}) 
         })
         .catch(err=>{

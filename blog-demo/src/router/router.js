@@ -21,6 +21,11 @@ import Article from '../view/article/Article';
 
 import User from '../view/user/user';
 
+import Comments from '../view/user/comments';
+
+import Notfound from '../view/404/Notfound'
+
+
 export default class Router extends Component {
     render() {
         return (
@@ -45,7 +50,9 @@ export default class Router extends Component {
                     <Route  path="/reg" component={Reg} />
                     <Route  path="/addarticle" component={addArticle} />
                     <Route  path="/article/:id" component={Article} />
-                    <Route  path="/user/:id" component={User} />
+                    <Route  path="/user/articles/:id" component={User} />
+                    <Route  path="/user/comments/:id" component={Comments} />
+                    <Route  path="/*" component={Notfound} />
             </Switch>
         )
     }

@@ -49,10 +49,10 @@ exports.addcomment = async ctx =>{
 
 // 后台 - 获取用户所有评论
 exports.comments = async ctx =>{
-    const id = ctx.session.id;
-
+    const {id,role} = ctx.request.body
+    console.log('commits')
     let data;
-    if (ctx.session.role > 1) {
+    if (role > 1) {
         data = await Comment.find().populate({
             path: "article",
             select: "title"
@@ -75,7 +75,7 @@ exports.del = async ctx =>{
     // console.log(ctx.params.id)
     const id = ctx.params.id;
     let res = {
-        state: 1,
+        code: 0,
         message: "删除成功"
     }
     // const data = await Comment.findById({_id:id}).then(err =>err);
@@ -85,7 +85,7 @@ exports.del = async ctx =>{
         .then(data => data.remove())
         .catch(err=>{
             res = {
-                state: 0,
+                code: 1,
                 message: "删除失败"
             }
     })
